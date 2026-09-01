@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mindly — MBTI & IQ Test</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+        background: #f4fbff;
+        color: #16324f;
+    }
+
+    /* NAVBAR */
+
+    header {
+        background: white;
+        border-bottom: 1px solid #dceff8;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .navbar {
+        max-width: 1100px;
+        margin: auto;
+        padding: 17px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        color: #39a9e8;
+    }
+
+    .logo span {
+        color: #16324f;
+    }
+
+    nav a {
+        margin-left: 25px;
+        text-decoration: none;
+        color: #527086;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    nav a:hover {
+        color: #39a9e8;
+    }
+
+    /* HERO */
+
+    .hero {
+        max-width: 1100px;
+        margin: 45px auto;
+        padding: 60px 45px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, #b9e9ff, #eaf8ff);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .hero-content {
+        max-width: 650px;
+    }
+
+    .tag {
+        display: inline-block;
+        background: white;
+        color: #269bd8;
+        padding: 8px 14px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: bold;
+        margin-bottom: 18px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+        line-height: 1.1;
+        margin-bottom: 18px;
+        color: #123b5d;
+    }
+
+    .hero p {
+        font-size: 16px;
+        line-height: 1.7;
+        color: #527086;
+        margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 12px;
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .primary {
+        background: #42afea;
+        color: white;
+        padding: 14px 23px;
+        border-radius: 12px;
+        transition: .2s;
+    }
+
+    .primary:hover {
+        background: #2299d7;
+        transform: translateY(-2px);
+    }
+
+    .secondary {
+        background: white;
+        color: #299dd9;
+        padding: 14px 23px;
+        border-radius: 12px;
+        transition: .2s;
+    }
+
+    .secondary:hover {
+        transform: translateY(-2px);
+    }
+
+    .hero-icon {
+        font-size: 130px;
+        opacity: .8;
+    }
+
+    /* CONTENT */
+
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 0 25px 60px;
+    }
+
+    .section-title {
+        margin-bottom: 22px;
+    }
+
+    .section-title h2 {
+        font-size: 27px;
+        color: #163b59;
+    }
+
+    .section-title p {
+        color: #71889a;
+        margin-top: 6px;
+        font-size: 14px;
+    }
+
+    /* TEST CARDS */
+
+    .tests {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .test-card {
+        background: white;
+        padding: 28px;
+        border-radius: 20px;
+        border: 1px solid #dceff8;
+        box-shadow: 0 8px 25px rgba(50, 150, 200, .06);
+        transition: .25s;
+    }
+
+    .test-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(50, 150, 200, .12);
+    }
+
+    .test-icon {
+        width: 55px;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 15px;
+        background: #e3f6ff;
+        font-size: 28px;
+        margin-bottom: 18px;
+    }
+
+    .test-card h3 {
+        margin-bottom: 9px;
+        color: #173d5b;
+    }
+
+    .test-card p {
+        color: #71889a;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .test-info {
+        display: flex;
+        gap: 15px;
+        color: #6c8799;
+        font-size: 12px;
+        margin-bottom: 20px;
+    }
+
+    .test-button {
+        width: 100%;
+        background: #e9f8ff;
+        color: #2398d3;
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .test-button:hover {
+        background: #d4f1ff;
+    }
+
+    /* FEATURES */
+
+    .features {
+        margin-top: 50px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+    }
+
+    .feature {
+        background: white;
+        border: 1px solid #dceff8;
+        border-radius: 17px;
+        padding: 22px;
+    }
+
+    .feature-icon {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+
+    .feature h3 {
+        font-size: 16px;
+        margin-bottom: 7px;
+    }
+
+    .feature p {
+        color: #71889a;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    /* QUIZ */
+
+    .quiz-page {
+        display: none;
+        max-width: 750px;
+        margin: 45px auto;
+        padding: 0 20px 60px;
+    }
+
+    .quiz-box {
+        background: white;
+        border: 1px solid #dceff8;
+        border-radius: 22px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(50, 150, 200, .08);
+    }
+
+    .quiz-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        color: #6d8798;
+        font-size: 13px;
+    }
+
+    .question {
+        font-size: 22px;
+        line-height: 1.4;
+        margin-bottom: 25px;
+        color: #173d5b;
+    }
+
+    .answers {
+        display: grid;
+        gap: 12px;
+    }
+
+    .answer {
+        background: #f5fbff;
+        border: 2px solid #e0f1f8;
+        color: #35566e;
+        text-align: left;
+        padding: 15px;
+        border-radius: 12px;
+        transition: .2s;
+    }
+
+    .answer:hover {
+        border-color: #65c1eb;
+        background: #eaf8ff;
+    }
+
+    .answer.selected {
+        border-color: #36a9e5;
+        background: #dff4ff;
+        color: #167db4;
+    }
+
+    .next-button {
+        width: 100%;
+        margin-top: 22px;
+        padding: 14px;
+        border-radius: 11px;
+        background: #42afea;
+        color: white;
+        opacity: .5;
+    }
+
+    .next-button.active {
+        opacity: 1;
+    }
+
+    /* RESULT */
+
+    .result {
+        display: none;
+        text-align: center;
+        max-width: 600px;
+        margin: 60px auto;
+        padding: 30px 20px;
+    }
+
+    .result-card {
+        background: white;
+        border: 1px solid #dceff8;
+        border-radius: 25px;
+        padding: 40px;
+        box-shadow: 0 15px 40px rgba(50, 150, 200, .1);
+    }
+
+    .result-icon {
+        font-size: 65px;
+        margin-bottom: 15px;
+    }
+
+    .result h2 {
+        color: #173d5b;
+        margin-bottom: 10px;
+    }
+
+    .result-type {
+        color: #35a8e5;
+        font-size: 30px;
+        font-weight: 800;
+        margin: 15px 0;
+    }
+
+    .result p {
+        color: #71889a;
+        line-height: 1.6;
+    }
+
+    /* FOOTER */
+
+    footer {
+        background: #e8f7fd;
+        text-align: center;
+        padding: 25px;
+        color: #6b8798;
+        font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 700px) {
+
+        .navbar {
+            padding: 15px 18px;
+        }
+
+        nav {
+            display: none;
+        }
+
+        .hero {
+            margin: 20px 15px;
+            padding: 35px 25px;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+        }
+
+        .hero-icon {
+            display: none;
+        }
+
+        .tests {
+            grid-template-columns: 1fr;
+        }
+
+        .features {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+        <div class="logo">
+            Mind<span>ly</span>
+        </div>
+
+        <nav>
+            <a href="#" onclick="showHome()">Beranda</a>
+            <a href="#tests">Tes</a>
+            <a href="#about">Tentang</a>
+        </nav>
+    </div>
+</header>
+
+
+<!-- HOME -->
+
+<div id="home">
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <span class="tag">
+                PERSONALITY & COGNITIVE TEST
+            </span>
+
+            <h1>
+                Kenali dirimu<br>
+                lebih dalam.
+            </h1>
+
+            <p>
+                Jelajahi kepribadian dan kemampuan berpikirmu
+                melalui tes interaktif yang sederhana dan menyenangkan.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary" onclick="startMBTI()">
+                    Tes MBTI →
+                </button>
+
+                <button class="secondary" onclick="startIQ()">
+                    Tes IQ
+                </button>
+            </div>
+
+        </div>
+
+        <div class="hero-icon">
+            🧠
+        </div>
+
+    </section>
+
+
+    <main class="container" id="tests">
+
+        <div class="section-title">
+            <h2>Pilih tes</h2>
+            <p>Temukan sesuatu yang baru tentang dirimu.</p>
+        </div>
+
+
+        <div class="tests">
+
+            <!-- MBTI -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+                    🧩
+                </div>
+
+                <h3>
+                    Personality — MBTI
+                </h3>
+
+                <p>
+                    Jawab beberapa pertanyaan tentang kebiasaan
+                    dan cara kamu berinteraksi untuk mendapatkan
+                    gambaran tipe kepribadianmu.
+                </p>
+
+                <div class="test-info">
+                    <span>📝 12 pertanyaan</span>
+                    <span>⏱ ±3 menit</span>
+                </div>
+
+                <button
+                    class="test-button"
+                    onclick="startMBTI()">
+                    Mulai Tes MBTI
+                </button>
+
+            </div>
+
+
+            <!-- IQ -->
+
+            <div class="test-card">
+
+                <div class="test-icon">
+                    🧠
+                </div>
+
+                <h3>
+                    Cognitive — IQ
+                </h3>
+
+                <p>
+                    Uji kemampuan logika, pola, angka, dan
+                    penalaran melalui soal-soal singkat.
+                </p>
+
+                <div class="test-info">
+                    <span>📝 10 pertanyaan</span>
+                    <span>⏱ ±5 menit</span>
+                </div>
+
+                <button
+                    class="test-button"
+                    onclick="startIQ()">
+                    Mulai Tes IQ
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="features" id="about">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Fokus
+                </h3>
+
+                <p>
+                    Pertanyaan dibuat sederhana agar kamu
+                    dapat fokus pada jawabanmu.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <h3>
+                    Hasil
+                </h3>
+
+                <p>
+                    Lihat hasil tes dan pahami arti dari
+                    jawabanmu.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🔒
+                </div>
+
+                <h3>
+                    Privasi
+                </h3>
+
+                <p>
+                    Tidak perlu memasukkan data pribadi
+                    untuk mencoba tes.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<section class="quiz-page" id="quizPage">
+
+    <div class="quiz-box">
+
+        <div class="quiz-header">
+            <span id="quizTitle">MBTI TEST</span>
+            <span id="questionNumber">1 / 12</span>
+        </div>
+
+        <div id="question"
+             class="question">
+        </div>
+
+        <div id="answers"
+             class="answers">
+        </div>
+
+        <button
+            id="nextButton"
+            class="next-button"
+            onclick="nextQuestion()">
+            Lanjut →
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- RESULT -->
+
+<section class="result" id="resultPage">
+
+    <div class="result-card">
+
+        <div class="result-icon">
+            ✨
+        </div>
+
+        <h2>
+            Hasil Tes Kamu
+        </h2>
+
+        <div
+            class="result-type"
+            id="resultType">
+        </div>
+
+        <p id="resultDescription">
+        </p>
+
+        <br>
+
+        <button
+            class="primary"
+            onclick="showHome()">
+            Kembali ke Beranda
+        </button>
+
+    </div>
+
+</section>
+
+
+<footer>
+    © 2026 Mindly — Kenali diri, pahami potensimu.
+</footer>
+
+
+<script>
+
+/* ================= DATA ================= */
+
+const mbtiQuestions = [
+
+    {
+        q: "Saat berada di acara yang ramai, kamu biasanya...",
+        a: [
+            ["Lebih bersemangat dan suka berbicara dengan banyak orang", "E"],
+            ["Lebih nyaman dengan beberapa orang atau sendiri", "I"]
+        ]
+    },
+
+    {
+        q: "Ketika mempelajari sesuatu yang baru, kamu lebih suka...",
+        a: [
+            ["Contoh nyata dan fakta", "S"],
+            ["Ide, kemungkinan, dan konsep", "N"]
+        ]
+    },
+
+    {
+        q: "Saat mengambil keputusan, kamu lebih mengandalkan...",
+        a: [
+            ["Logika dan alasan yang objektif", "T"],
+            ["Perasaan dan dampaknya terhadap orang lain", "F"]
+        ]
+    },
+
+    {
+        q: "Dalam mengerjakan tugas, kamu lebih nyaman...",
+        a: [
+            ["Membuat rencana yang jelas", "J"],
+            ["Fleksibel dan mengikuti keadaan", "P"]
+        ]
+    },
+
+    {
+        q: "Saat berdiskusi, kamu biasanya...",
+        a: [
+            ["Berpikir sambil berbicara", "E"],
+            ["Berpikir terlebih dahulu sebelum berbicara", "I"]
+        ]
+    },
+
+    {
+        q: "Kamu lebih tertarik pada...",
+        a: [
+            ["Hal yang praktis dan dapat dilakukan", "S"],
+            ["Kemungkinan baru dan imajinasi", "N"]
+        ]
+    },
+
+    {
+        q: "Ketika teman memiliki masalah, kamu cenderung...",
+        a: [
+            ["Mencari solusi yang logis", "T"],
+            ["Mendengarkan dan memahami perasaannya", "F"]
+        ]
+    },
+
+    {
+        q: "Meja belajar kamu biasanya...",
+        a: [
+            ["Teratur dan tertata", "J"],
+            ["Bisa berubah sesuai kebutuhan", "P"]
+        ]
+    },
+
+    {
+        q: "Setelah hari yang melelahkan, kamu lebih suka...",
+        a: [
+            ["Bertemu atau berbicara dengan orang lain", "E"],
+            ["Menghabiskan waktu sendiri", "I"]
+        ]
+    },
+
+    {
+        q: "Ketika membayangkan masa depan, kamu lebih sering...",
+        a: [
+            ["Memikirkan apa yang realistis", "S"],
+            ["Membayangkan berbagai kemungkinan", "N"]
+        ]
+    },
+
+    {
+        q: "Dalam perdebatan, yang paling penting bagimu adalah...",
+        a: [
+            ["Kebenaran dan konsistensi logika", "T"],
+            ["Menjaga hubungan dan perasaan", "F"]
+        ]
+    },
+
+    {
+        q: "Ketika memiliki rencana, kamu biasanya...",
+        a: [
+            ["Ingin menyelesaikannya sesuai rencana", "J"],
+            ["Tidak masalah jika rencana berubah", "P"]
+        ]
+    }
+
+];
+
+
+/* ================= IQ QUESTIONS ================= */
+
+const iqQuestions = [
+
+    {
+        q: "Jika 2, 4, 8, 16, ... angka berikutnya adalah?",
+        a: [
+            ["24", false],
+            ["32", true],
+            ["36", false],
+            ["40", false]
+        ]
+    },
+
+    {
+        q: "Jika semua A adalah B dan semua B adalah C, maka...",
+        a: [
+            ["Semua A adalah C", true],
+            ["Semua C adalah A", false],
+            ["Tidak ada hubungan", false],
+            ["A berbeda dari C", false]
+        ]
+    },
+
+    {
+        q: "3, 6, 12, 24, ...",
+        a: [
+            ["36", false],
+            ["42", false],
+            ["48", true],
+            ["50", false]
+        ]
+    },
+
+    {
+        q: "Jika 5 + 5 = 10, maka 10 + 10 = ?",
+        a: [
+            ["15", false],
+            ["20", true],
+            ["25", false],
+            ["30", false]
+        ]
+    },
+
+    {
+        q: "Manakah yang berbeda?",
+        a: [
+            ["Apel", false],
+            ["Jeruk", false],
+            ["Mangga", false],
+            ["Wortel", true]
+        ]
+    },
+
+    {
+        q: "1, 4, 9, 16, ...",
+        a: [
+            ["20", false],
+            ["24", false],
+            ["25", true],
+            ["30", false]
+        ]
+    },
+
+    {
+        q: "Jika hari ini Senin, 10 hari lagi adalah...",
+        a: [
+            ["Rabu", false],
+            ["Kamis", true],
+            ["Jumat", false],
+            ["Sabtu", false]
+        ]
+    },
+
+    {
+        q: "8 × 7 = ?",
+        a: [
+            ["54", false],
+            ["56", true],
+            ["58", false],
+            ["64", false]
+        ]
+    },
+
+    {
+        q: "Jika A = 1, B = 2, C = 3, maka D + E = ?",
+        a: [
+            ["7", false],
+            ["8", false],
+            ["9", true],
+            ["10", false]
+        ]
+    },
+
+    {
+        q: "100, 90, 80, 70, ...",
+        a: [
+            ["50", false],
+            ["55", false],
+            ["60", true],
+            ["65", false]
+        ]
+    }
+
+];
+
+
+/* ================= VARIABLES ================= */
+
+let currentQuestions = [];
+let currentQuestion = 0;
+let selectedAnswer = null;
+
+let mbtiScore = {
+    E: 0,
+    I: 0,
+    S: 0,
+    N: 0,
+    T: 0,
+    F: 0,
+    J: 0,
+    P: 0
+};
+
+let iqScore = 0;
+let currentTest = "";
+
+
+/* ================= START MBTI ================= */
+
+function startMBTI() {
+
+    currentTest = "MBTI";
+
+    currentQuestions = mbtiQuestions;
+
+    currentQuestion = 0;
+
+    selectedAnswer = null;
+
+    mbtiScore = {
+        E: 0,
+        I: 0,
+        S: 0,
+        N: 0,
+        T: 0,
+        F: 0,
+        J: 0,
+        P: 0
+    };
+
+    document.getElementById("home").style.display = "none";
+
+    document.getElementById("resultPage").style.display = "none";
+
+    document.getElementById("quizPage").style.display = "block";
+
+    document.getElementById("quizTitle").textContent =
+        "MBTI TEST";
+
+    showQuestion();
+}
+
+
+/* ================= START IQ ================= */
+
+function startIQ() {
+
+    currentTest = "IQ";
+
+    currentQuestions = iqQuestions;
+
+    currentQuestion = 0;
+
+    selectedAnswer = null;
+
+    iqScore = 0;
+
+    document.getElementById("home").style.display = "none";
+
+    document.getElementById("resultPage").style.display = "none";
+
+    document.getElementById("quizPage").style.display = "block";
+
+    document.getElementById("quizTitle").textContent =
+        "IQ TEST";
+
+    showQuestion();
+}
+
+
+/* ================= SHOW QUESTION ================= */
+
+function showQuestion() {
+
+    selectedAnswer = null;
+
+    const data =
+        currentQuestions[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        `${currentQuestion + 1} / ${currentQuestions.length}`;
+
+    document.getElementById("question").textContent =
+        data.q;
+
+    const answers =
+        document.getElementById("answers");
+
+    answers.innerHTML = "";
+
+    data.a.forEach((answer, index) => {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "answer";
+
+        button.textContent = answer[0];
+
+        button.onclick = function() {
+
+            selectAnswer(index, button);
+
+        };
+
+        answers.appendChild(button);
+
+    });
+
+    document.getElementById("nextButton")
+        .classList.remove("active");
+}
+
+
+/* ================= SELECT ================= */
+
+function selectAnswer(index, element) {
+
+    selectedAnswer = index;
+
+    document
+        .querySelectorAll(".answer")
+        .forEach(btn =>
+            btn.classList.remove("selected")
+        );
+
+    element.classList.add("selected");
+
+    document.getElementById("nextButton")
+        .classList.add("active");
+}
+
+
+/* ================= NEXT ================= */
+
+function nextQuestion() {
+
+    if (selectedAnswer === null) {
+        return;
+    }
+
+    const data =
+        currentQuestions[currentQuestion];
+
+    if (currentTest === "MBTI") {
+
+        const letter =
+            data.a[selectedAnswer][1];
+
+        mbtiScore[letter]++;
+
+    } else {
+
+        if (data.a[selectedAnswer][1] === true) {
+            iqScore++;
+        }
+
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion >= currentQuestions.length) {
+
+        showResult();
+
+    } else {
+
+        showQuestion();
+
+    }
+}
+
+
+/* ================= RESULT ================= */
+
+function showResult() {
+
+    document.getElementById("quizPage")
+        .style.display = "none";
+
+    document.getElementById("resultPage")
+        .style.display = "block";
+
+    if (currentTest === "MBTI") {
+
+        let type = "";
+
+        type += mbtiScore.E >= mbtiScore.I ? "E" : "I";
+        type += mbtiScore.S >= mbtiScore.N ? "S" : "N";
+        type += mbtiScore.T >= mbtiScore.F ? "T" : "F";
+        type += mbtiScore.J >= mbtiScore.P ? "J" : "P";
+
+        document.getElementById("resultType")
+            .textContent = type;
+
+        document.getElementById("resultDescription")
+            .textContent =
+            getMBTIDescription(type);
+
+    } else {
+
+        let estimated =
+            80 + (iqScore * 4);
+
+        document.getElementById("resultType")
+            .textContent =
+            "Skor: " + estimated;
+
+        document.getElementById("resultDescription")
+            .textContent =
+            `Kamu menjawab ${iqScore} dari ${iqQuestions.length} soal dengan benar. Ini adalah skor latihan, bukan hasil tes IQ standar.`;
+
+    }
+}
+
+
+/* ================= MBTI DESCRIPTION ================= */
+
+function getMBTIDescription(type) {
+
+    const descriptions = {
+
+        INTJ: "Cenderung strategis, mandiri, dan suka memikirkan cara terbaik untuk mencapai tujuan.",
+
+        INTP: "Cenderung analitis, ingin tahu, dan menikmati pemecahan masalah.",
+
+        ENTJ: "Cenderung tegas, terorganisir, dan berorientasi pada tujuan.",
+
+        ENTP: "Cenderung kreatif, suka mengeksplorasi ide, dan menikmati diskusi.",
+
+        INFJ: "Cenderung reflektif, memiliki visi, dan peduli pada makna serta orang lain.",
+
+        INFP: "Cenderung idealis, kreatif, dan memiliki nilai pribadi yang kuat.",
+
+        ENFJ: "Cenderung komunikatif, suportif, dan senang membantu perkembangan orang lain.",
+
+        ENFP: "Cenderung antusias, kreatif, dan terbuka terhadap berbagai kemungkinan.",
+
+        ISTJ: "Cenderung bertanggung jawab, terstruktur, dan memperhatikan detail.",
+
+        ISFJ: "Cenderung teliti, suportif, dan memperhatikan kebutuhan orang lain.",
+
+        ESTJ: "Cenderung praktis, terorganisir, dan suka memastikan sesuatu berjalan baik.",
+
+        ESFJ: "Cenderung ramah, kooperatif, dan memperhatikan hubungan sosial.",
+
+        ISTP: "Cenderung praktis, tenang, dan suka memahami bagaimana sesuatu bekerja.",
+
+        ISFP: "Cenderung fleksibel, sensitif, dan menghargai pengalaman personal.",
+
+        ESTP: "Cenderung spontan, aktif, dan suka menghadapi tantangan langsung.",
+
+        ESFP: "Cenderung ekspresif, ramah, dan menikmati pengalaman bersama orang lain."
+
+    };
+
+    return descriptions[type] ||
+        "Tipe kepribadianmu memiliki kombinasi karakteristik yang unik.";
+}
+
+
+/* ================= HOME ================= */
+
+function showHome() {
+
+    document.getElementById("home")
+        .style.display = "block";
+
+    document.getElementById("quizPage")
+        .style.display = "none";
+
+    document.getElementById("resultPage")
+        .style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
